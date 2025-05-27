@@ -12,10 +12,12 @@
 4. [Model Architectures](#model-architectures)  
 5. [Training Details](#training-details)  
 6. [Uncertainty Estimation](#uncertainty-estimation)  
-7. [Results & Visualisations](#results--visualisations)  
-8. [Re-Use in Production](#re-use-in-production)  
-9. [Key Paper & Further Reading](#key-paper--further-reading)  
-10. [Team & Acknowledgements](#team--acknowledgements)
+7. [Training Results](#results--visualisations)  
+8. [Inference Summary for Final Model (CNN + 1 Bayes)](inference-summary)
+9. [Classification Report (Excluding IDK Cases)](classification-report)
+10. [Re-Use in Production](#re-use-in-production)  
+11. [Key Paper & Further Reading](#key-paper--further-reading)  
+12. [Team & Acknowledgements](#team--acknowledgements)
 
 ---
 
