@@ -65,13 +65,16 @@ python scripts/build_subset.py --samples-per-class 700 --seed 111
 ```
 
 
+
 ## Model Architectures  
 
-| File               | Backbone                       | Bayesian Head                             | Params |
-|--------------------|--------------------------------|-------------------------------------------|--------|
-| `bayes_resnet.py`  | ResNet-18 (ImageNet weights)   | 128 → 5 `BayesianLinear`                  | 11.3 M |
-| `bayes_resnet2.py` | ResNet-18                      | 128 → 64 → 5 (two Bayes layers)           | 11.4 M |
-| `bayes_cnn.py`     | 3-block custom CNN             | 128 → 64 → 5 (two Bayes layers)           | 4.8 M  |
+| File                       | Backbone              | Bayesian Head                      |
+|----------------------------|-----------------------|------------------------------------|
+| `bayes_resnet_trial.py`    | ResNet-18             | 128 → 5 (1 × `BayesianLinear`)     |
+| `bayes_resnet_trial1.py`   | ResNet-18             | 128 → 64 → 5 (2 × `BayesianLinear`)|
+| `custom_bayes_cnn_try.py`  | 3-block custom CNN    | 128 → 5 (1 × `BayesianLinear`)     |
+| `custom_bayes_cnn_5.py`    | 3-block custom CNN    | 128 → 64 → 5 (2 × `BayesianLinear`)|
+
 
 _All heads expose `sample_elbo()` from [BLiTZ](https://github.com/piEsposito/blitz-bayesian-deep-learning) for variational inference._
 
