@@ -97,8 +97,8 @@ class BayesianDRNet(nn.Module):
 - \beta\,\mathrm{KL}\bigl(q_\theta(w)\,\|\,p(w)\bigr)
 ```
 which is really just a balance between:
-How well the model fits the labels (the usual “log-likelihood” term)
-How simple the model stays (a KL-divergence penalty that keeps our learned weights from drifting too far from their prior)
+- 1. How well the model fits the labels (the usual “log-likelihood” term)
+- 2. How simple the model stays (a KL-divergence penalty that keeps our learned weights from drifting too far from their prior)
 
 - $$\(\beta = 5\times10^{-3}\)$$ controls posterior complexity.  
 - **Optimizer:** Adam (lr 1e-4, weight-decay 1e-5)  
