@@ -105,6 +105,20 @@ which is really just a balance between:
 - **Batch size:** 32 • **Epochs:** 15–20  
 - **Hardware:** Tesla T4 (16 GB) — ~20 min per run  
 
+## Training Results 
+
+| Model                | Accuracy (after IDK) | 
+|----------------------|----------------------|
+| ResNet + 1 Bayes     | 0.12                 | 
+| ResNet + 2 Bayes     | 0.22                 | 
+| CNN + 1 Bayes        | **0.84**             | 
+| CNN + 2 Bayes        | 0.15                 | 
+
+![ELBO Curve](docs/figs/elbo.png)  
+![Uncertainty vs Error](docs/figs/uncert_scatter.png)
+
+ *Green dots = correct predictions, red = mis-classifications.*
+
 
 ## Uncertainty Estimation  
 
@@ -125,20 +139,6 @@ else:
     print(f"→  Predicted class {cls} (confidence {mean_p[cls]:.2%})")
 
 ```
-
-## Training Results 
-
-| Model                | Accuracy (after IDK) | 
-|----------------------|----------------------|
-| ResNet + 1 Bayes     | 0.12                 | 
-| ResNet + 2 Bayes     | 0.22                 | 
-| CNN + 1 Bayes        | **0.84**             | 
-| CNN + 2 Bayes        | 0.15                 | 
-
-![ELBO Curve](docs/figs/elbo.png)  
-![Uncertainty vs Error](docs/figs/uncert_scatter.png)
-
- *Green dots = correct predictions, red = mis-classifications.*
 
  ## Inference Summary for Final Model (CNN + 1 Bayes)
 
