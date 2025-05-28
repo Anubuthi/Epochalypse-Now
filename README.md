@@ -113,7 +113,7 @@ which is really just a balance between:
 | $$\(p_k\)$$                | Mean softmax probability over $$\(N\)$$ MC samples    |
 | $$\(\sigma_k\)$$           | Std-dev of softmax over samples (per class)       |
 | **Predictive Entropy** | $$\(\displaystyle \mathcal{H} = -\sum_{k=1}^{K} p_k \log p_k\)$$ |
-| **IDK Gate**           | Defer if $$\(\mathcal{H} > 0.6\times10^{-3}\)$$       |
+| **IDK Gate**           | Defer if $$\(\mathcal{H} > 6\times10^{-4}\)$$       |
 
 ```python
 from src.evaluate import mc_predict
