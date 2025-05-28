@@ -10,9 +10,9 @@
 2. [Quick Start](#quick-start)  
 3. [Data Pipeline](#data-pipeline)  
 4. [Model Architectures](#model-architectures)  
-5. [Training Details](#training-details)  
-6. [Uncertainty Estimation](#uncertainty-estimation)  
-7. [Training Results](#results--visualisations)  
+5. [Training Details](#training-details) 
+6. [Training Results](#results--visualisations)   
+7. [Uncertainty Estimation](#uncertainty-estimation)  
 8. [Inference Summary for Final Model (CNN + 1 Bayes)](#inference-summary-for-final-model-cnn--1-bayes)
 9. [Classification Report (Excluding IDK Cases)](#classification-report-excluding-idk-cases)
 10. [Re-Use in Production](#re-use-in-production)  
@@ -68,14 +68,18 @@ python scripts/build_subset.py --samples-per-class 700 --seed 111
 
 
 
+
+
 ## Model Architectures  
 
-| File                       | Backbone              | Bayesian Head                      |
-|----------------------------|-----------------------|------------------------------------|
-| `bayes_resnet_trial.py`    | ResNet-18             | 128 → 5 (1 × `BayesianLinear`)     |
-| `bayes_resnet_trial1.py`   | ResNet-18             | 128 → 64 → 5 (2 × `BayesianLinear`)|
-| `custom_bayes_cnn_try.py`  | 3-block custom CNN    | 128 → 5 (1 × `BayesianLinear`)     |
-| `custom_bayes_cnn_5.py`    | 3-block custom CNN    | 128 → 64 → 5 (2 × `BayesianLinear`)|
+| File                       | Backbone                                                | Bayesian Head                      |
+|----------------------------|---------------------------------------------------------|------------------------------------|
+| `bayes_resnet_trial.py`    | ResNet-18 (ImageNet pretrained; output 512→128)         | 128 → 5 (1 × `BayesianLinear`)     |
+| `bayes_resnet_trial1.py`   | ResNet-18 (ImageNet pretrained; output 512→128)         | 128 → 64 → 5 (2 × `BayesianLinear`)|  
+| `custom_bayes_cnn_try.py`  | 3-block custom CNN:<br>• Conv–BN–ReLU–Pool ×3<br>(224×224→128×28×28) | 128 → 5 (1 × `BayesianLinear`)     |
+| `custom_bayes_cnn_5.py`    | 3-block custom CNN:<br>• Conv–BN–ReLU–Pool ×3<br>(224×224→128×28×28) | 128 → 64 → 5 (2 × `BayesianLinear`)|  
+
+> **Note:** The two “custom” models use three Conv–BatchNorm–ReLU–MaxPool blocks that shrink a 224×224 input to a 128×28×28 feature map before the Bayesian head.  
 
 
 _All heads expose `sample_elbo()` from [BLiTZ](https://github.com/piEsposito/blitz-bayesian-deep-learning) for variational inference._
