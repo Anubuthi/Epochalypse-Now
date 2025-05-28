@@ -54,8 +54,8 @@ jupyter lab notebooks/01_explore_results.ipynb
 | Step                  | Tool                                                         | Output                |
 |-----------------------|--------------------------------------------------------------|-----------------------|
 | **Download**          | `kagglehub`                                                  | `data/raw/`           |
-| **Sub-sampling**      | `pandas` + `shutil`                                          | 1000 images per class  |
-| **Train / Val split** | PyTorch `random_split` (80 / 20)                             | `data/processed/`     |
+| **Sub-sampling**      | `pandas` + `shutil`                                          | 700 images per class  |
+| **Train / Val split** | PyTorch `random_split` (70 / 30)                             | `data/processed/`     |
 | **Augmentation**      | `torchvision.transforms` (resize 224², random H-flip, color jitter) | —                     |
 
 > **Class labels:**  
@@ -96,6 +96,9 @@ class BayesianDRNet(nn.Module):
 = \mathbb{E}_{q_\theta(w)}\bigl[\log p(y \mid x, w)\bigr]
 - \beta\,\mathrm{KL}\bigl(q_\theta(w)\,\|\,p(w)\bigr)
 ```
+which is really just a balance between:
+How well the model fits the labels (the usual “log-likelihood” term)
+How simple the model stays (a KL-divergence penalty that keeps our learned weights from drifting too far from their prior)
 
 - $$\(\beta = 5\times10^{-3}\)$$ controls posterior complexity.  
 - **Optimizer:** Adam (lr 1e-4, weight-decay 1e-5)  
@@ -110,7 +113,7 @@ class BayesianDRNet(nn.Module):
 | $$\(p_k\)$$                | Mean softmax probability over $$\(N\)$$ MC samples    |
 | $$\(\sigma_k\)$$           | Std-dev of softmax over samples (per class)       |
 | **Predictive Entropy** | $$\(\displaystyle \mathcal{H} = -\sum_{k=1}^{K} p_k \log p_k\)$$ |
-| **IDK Gate**           | Defer if $$\(\mathcal{Uncertanity} > 0.5$$                       |
+| **IDK Gate**           | Defer if $$\(\mathcal{H} > 0.6\times10^{-3}\)$$       |
 
 ```python
 from src.evaluate import mc_predict
@@ -125,7 +128,7 @@ else:
 
 ## Training Results 
 
-| Model                | Accuracy             | 
+| Model                | Accuracy (after IDK) | 
 |----------------------|----------------------|
 | ResNet + 1 Bayes     | 0.12                 | 
 | ResNet + 2 Bayes     | 0.22                 | 
