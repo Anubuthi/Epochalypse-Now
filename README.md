@@ -55,7 +55,7 @@ jupyter lab notebooks/01_explore_results.ipynb
 |-----------------------|--------------------------------------------------------------|-----------------------|
 | **Download**          | `kagglehub`                                                  | `data/raw/`           |
 | **Sub-sampling**      | `pandas` + `shutil`                                          | 700 images per class  |
-| **Train / Val split** | PyTorch `random_split` (70 / 30)                             | `data/processed/`     |
+| **Train / Val split** | PyTorch `random_split` (80 / 14 / 6)                             | `data/processed/`     |
 | **Augmentation**      | `torchvision.transforms` (resize 224², random H-flip, color jitter) | —                     |
 
 > **Class labels:**  
