@@ -125,7 +125,7 @@ else:
 
 ## Training Results 
 
-| Model                | Accuracy (after IDK) | 
+| Model                | Accuracy             | 
 |----------------------|----------------------|
 | ResNet + 1 Bayes     | 0.12                 | 
 | ResNet + 2 Bayes     | 0.22                 | 
