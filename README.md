@@ -226,6 +226,6 @@ uvicorn deploy.app:app --host 0.0.0.0 --port 8000
 **UChicago · Applied Data Science** – Spring 2025  
 Angus Ho ·  Anubuthi Kottapalli · Ashwin Ram Venkataraman · Gyujin Seo
 
-Thanks to Prof. Batu for clinical guidance, the Kaggle DR community, and the BLiTZ maintainers.
+Thanks to Prof. Batuhan for clinical guidance, the Kaggle DR community, and the BLiTZ maintainers.
 
 > **MIT License** © 2025 ADS Bayesian ML Epochalpyse Now Group  
